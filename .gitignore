@@ -1,0 +1,64 @@
+# ================
+# Frontend (Vite/React)
+# ================
+# Dependencies
+node_modules/
+.pnpm-debug.log
+
+# Build files
+dist/
+dist-ssr/
+*.local
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Editor
+.vscode/
+!.vscode/extensions.json
+.idea/
+.DS_Store
+
+# ================
+# Backend (Spring Boot)
+# ================
+# Build
+target/
+build/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Logs
+*.log
+logs/
+
+# IDE
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+*.iml
+*.ipr
+*.iws
+
+# ================
+# General
+# ================
+# System files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Temp files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+~$*
