@@ -313,7 +313,7 @@ const PersonalizedLearningGoals = () => {
     const [editDateError, setEditDateError] = useState('');
 
     useEffect(() => {
-        const user = {id: 8, username: "John Doe"};
+        const user = {id: 8, username: ""};
         setCurrentUser(user);
     }, []);
 
