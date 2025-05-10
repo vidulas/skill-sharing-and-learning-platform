@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31d9c2d2-94b9-420e-8b37-54a84d0ba246" name="Changes" comment="" />
+    <list default="true" id="31d9c2d2-94b9-420e-8b37-54a84d0ba246" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/skillshare/src/main/java/com/edu/skillshare/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/skillshare/src/main/java/com/edu/skillshare/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client-frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client-frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/client-frontend/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-frontend/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client-frontend/src/main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client-frontend/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client-frontend/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/skillshare/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/skillshare/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/skillshare/src/main/java/com/edu/skillshare/controller/QuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/skillshare/src/main/java/com/edu/skillshare/controller/QuestionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/skillshare/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/skillshare/src/main/resources/application.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
