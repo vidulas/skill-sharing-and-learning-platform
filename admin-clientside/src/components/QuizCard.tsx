@@ -57,7 +57,7 @@ const QuizCard = ({
             <span>{participants} participants</span>
           </div>
         </div>
-        <Link to={`/quiz/${id}`}>
+        <Link to={'/quiz'}>
           <Button variant="outline" fullWidth>
             Start Quiz
           </Button>

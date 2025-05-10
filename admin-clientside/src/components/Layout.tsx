@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebase';
+
 import { BookOpenIcon, HomeIcon, LogInIcon, LogOutIcon, UserPlusIcon, BookIcon, LayoutDashboardIcon } from 'lucide-react';
 const Layout = ({
   children
@@ -12,9 +15,13 @@ const Layout = ({
     logout
   } = useAuth();
   const navigate = useNavigate();
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
+  const handleLogout = async () => {
+    try {
+      await signOut(auth); // Sign out the user using Firebase
+      navigate('/login'); // Redirect to the login page
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
   };
   return <div className="flex flex-col min-h-screen bg-gray-50">
       {/* Header */}

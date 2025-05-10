@@ -7,6 +7,40 @@ import { useQuiz } from '../contexts/QuizContext';
 import PostCard from '../components/PostCard';
 import QuizCard from '../components/QuizCard';
 import Button from '../components/Button';
+
+const mockQuizzes = [
+  {
+    id: '1',
+    title: 'React Basics',
+    description: 'Learn the fundamentals of React.',
+    questions: [{}, {}, {}], // Mock 3 questions
+    timeInMinutes: 10,
+    difficulty: 'Beginner',
+    participants: 120,
+    category: 'Web Development',
+  },
+  {
+    id: '2',
+    title: 'Advanced CSS',
+    description: 'Master advanced CSS techniques.',
+    questions: [{}, {}, {}, {}, {}], // Mock 5 questions
+    timeInMinutes: 15,
+    difficulty: 'Intermediate',
+    participants: 80,
+    category: 'Design',
+  },
+  {
+    id: '3',
+    title: 'TypeScript Essentials',
+    description: 'Get started with TypeScript.',
+    questions: [{}, {}, {}, {}], // Mock 4 questions
+    timeInMinutes: 12,
+    difficulty: 'Advanced',
+    participants: 100,
+    category: 'Programming',
+  },
+];
+
 const Dashboard = () => {
   const {
     user
@@ -34,7 +68,10 @@ const Dashboard = () => {
   // Filter posts based on search term
   const filteredPosts = posts.filter(post => post.title.toLowerCase().includes(searchTerm.toLowerCase()) || post.category.toLowerCase().includes(searchTerm.toLowerCase()) || post.author.name.toLowerCase().includes(searchTerm.toLowerCase()));
   // Filter quizzes based on search term
-  const filteredQuizzes = questions.filter(quiz => quiz.questionText.toLowerCase().includes(searchTerm.toLowerCase()));
+   // Use mock quizzes for filtered quizzes
+   const filteredQuizzes = mockQuizzes.filter((quiz) =>
+    quiz.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   return <div className="max-w-6xl mx-auto">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
         <div>
