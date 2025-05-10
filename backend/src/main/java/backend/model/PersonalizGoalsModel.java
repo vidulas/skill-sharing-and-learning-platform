@@ -2,7 +2,6 @@ package backend.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
-
 import java.util.Date;
 
 @Document(collection = "goals")
