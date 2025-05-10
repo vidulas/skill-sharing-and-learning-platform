@@ -57,10 +57,24 @@ public class LikeService {
             
             // Create notification for the post owner
             String postOwnerId = postService.getPostOwner(postId);
-            String actorName = getUsernameById(userId); // You'll need to implement this method
+            String actorName = getUsernameById(userId);
             
-            // Always create notification
+            // Always create notification for the post owner
             notificationService.createLikeNotification(postOwnerId, postId, userId, actorName);
+            
+            // Also create a self-notification for the liker
+            if (!postOwnerId.equals(userId)) {
+                notificationService.createNotification(
+                    userId, 
+                    "You liked a post", 
+                    "SELF_LIKE", 
+                    "/posts/" + postId,
+                    postId,
+                    null,
+                    userId,
+                    actorName
+                );
+            }
         }
     }
 

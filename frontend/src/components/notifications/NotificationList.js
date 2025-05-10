@@ -3,10 +3,11 @@ import NotificationItem from './NotificationItem';
 import notificationService from '../../services/notificationService';
 import './NotificationList.css';
 
-const NotificationList = ({ autoRefresh = true, compact = false, refreshTrigger = 0 }) => {
+const NotificationList = ({ autoRefresh = true, compact = false, refreshTrigger = 0, showAllTypes = true }) => {
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [activeFilter, setActiveFilter] = useState('all'); // 'all', 'mentions', 'comments', 'likes'
 
   useEffect(() => {
     fetchNotifications();
@@ -14,18 +15,36 @@ const NotificationList = ({ autoRefresh = true, compact = false, refreshTrigger 
     // Poll for new notifications more frequently if autoRefresh is enabled
     let interval;
     if (autoRefresh) {
-      interval = setInterval(fetchNotifications, 5000); // Every 5 seconds for more responsive updates
+      interval = setInterval(fetchNotifications, 3000); // Every 3 seconds for more responsive updates
     }
 
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [autoRefresh, refreshTrigger]); // Add refreshTrigger dependency
+  }, [autoRefresh, refreshTrigger, activeFilter]);
 
   const fetchNotifications = async () => {
     try {
       setLoading(true);
-      const response = await notificationService.getUserNotifications();
+      let response;
+      
+      // Use the appropriate API based on filter
+      switch (activeFilter) {
+        case 'likes':
+          response = await notificationService.getLikeNotifications();
+          break;
+        case 'comments':
+          response = await notificationService.getCommentNotifications();
+          break;
+        case 'mentions':
+          response = await notificationService.getUserNotifications('MENTION');
+          break;
+        case 'all':
+        default:
+          response = await notificationService.getUserNotifications();
+          break;
+      }
+      
       setNotifications(response.data);
       setError(null);
     } catch (error) {
@@ -72,13 +91,44 @@ const NotificationList = ({ autoRefresh = true, compact = false, refreshTrigger 
       {!compact && (
         <div className="notification-header">
           <h2>Notifications {unreadCount > 0 && <span className="unread-badge">{unreadCount}</span>}</h2>
-          {unreadCount > 0 && (
-            <button className="mark-all-read" onClick={handleMarkAllAsRead}>
-              Mark all as read
+          <div className="notification-actions">
+            {unreadCount > 0 && (
+              <button className="mark-all-read" onClick={handleMarkAllAsRead}>
+                Mark all as read
+              </button>
+            )}
+            <button className="refresh-button" onClick={fetchNotifications}>
+              Refresh
             </button>
-          )}
-          <button className="refresh-button" onClick={fetchNotifications}>
-            Refresh
+          </div>
+        </div>
+      )}
+      
+      {!compact && (
+        <div className="notification-filters">
+          <button 
+            className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
+            onClick={() => setActiveFilter('all')}
+          >
+            All
+          </button>
+          <button 
+            className={`filter-btn ${activeFilter === 'comments' ? 'active' : ''}`}
+            onClick={() => setActiveFilter('comments')}
+          >
+            Comments
+          </button>
+          <button 
+            className={`filter-btn ${activeFilter === 'likes' ? 'active' : ''}`}
+            onClick={() => setActiveFilter('likes')}
+          >
+            Likes
+          </button>
+          <button 
+            className={`filter-btn ${activeFilter === 'mentions' ? 'active' : ''}`}
+            onClick={() => setActiveFilter('mentions')}
+          >
+            Mentions
           </button>
         </div>
       )}

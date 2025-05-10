@@ -54,9 +54,22 @@ public class CommentService {
             // This is a comment on a post, notify the post owner
             String postOwnerId = postService.getPostOwner(postId);
             
-            if (postOwnerId != null && !postOwnerId.equals(userId)) {
-                notificationService.createCommentNotification(
-                    postOwnerId, postId, savedComment.getCommentId(), userId, username
+            // ALWAYS create a notification, even for self-comments
+            notificationService.createCommentNotification(
+                postOwnerId, postId, savedComment.getCommentId(), userId, username
+            );
+            
+            // Also create a self-notification for the commenter
+            if (!postOwnerId.equals(userId)) {
+                notificationService.createNotification(
+                    userId, 
+                    "You commented on a post", 
+                    "SELF_COMMENT", 
+                    "/posts/" + postId + "#comment-" + savedComment.getCommentId(),
+                    postId,
+                    savedComment.getCommentId(),
+                    userId,
+                    username
                 );
             }
         } else {
@@ -65,9 +78,22 @@ public class CommentService {
             if (parentComment.isPresent()) {
                 String commentOwnerId = parentComment.get().getUserId();
                 
+                // ALWAYS create a notification, even for self-replies
+                notificationService.createReplyNotification(
+                    commentOwnerId, postId, savedComment.getCommentId(), userId, username
+                );
+                
+                // Also create a self-notification for the replier
                 if (!commentOwnerId.equals(userId)) {
-                    notificationService.createReplyNotification(
-                        commentOwnerId, postId, savedComment.getCommentId(), userId, username
+                    notificationService.createNotification(
+                        userId, 
+                        "You replied to a comment", 
+                        "SELF_REPLY", 
+                        "/posts/" + postId + "#comment-" + savedComment.getCommentId(),
+                        postId,
+                        savedComment.getCommentId(),
+                        userId,
+                        username
                     );
                 }
             }

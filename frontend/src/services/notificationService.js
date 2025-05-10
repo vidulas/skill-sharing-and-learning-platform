@@ -1,7 +1,10 @@
 import api from './api';
 
 const notificationService = {
-  getUserNotifications: () => {
+  getUserNotifications: (type = null) => {
+    if (type) {
+      return api.get(`/notifications?type=${type}`);
+    }
     return api.get('/notifications');
   },
   
@@ -27,6 +30,11 @@ const notificationService = {
   
   getCommentNotifications: () => {
     return api.get('/notifications?type=COMMENT,REPLY');
+  },
+
+  // Get self action notifications
+  getSelfNotifications: () => {
+    return api.get('/notifications?type=SELF_LIKE,SELF_COMMENT,SELF_REPLY');
   },
 
   // For demo purposes - create a test notification

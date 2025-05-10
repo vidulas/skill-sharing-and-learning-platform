@@ -31,24 +31,6 @@ const PostItem = ({ post }) => {
     return () => clearInterval(interval);
   }, [refreshNotifications]); // Add refreshNotifications to the dependency array
 
-  const handleLikeToggle = () => {
-    setRefreshLikes(prev => prev + 1);
-    
-    // Force immediate notification refresh with a short delay to allow backend processing
-    setTimeout(() => {
-      setRefreshNotifications(prev => prev + 1);
-      fetchUnreadCount();
-    }, 300);
-  };
-
-  const handleCommentAdded = () => {
-    // Force immediate notification refresh with a short delay to allow backend processing
-    setTimeout(() => {
-      setRefreshNotifications(prev => prev + 1);
-      fetchUnreadCount();
-    }, 300);
-  };
-
   const fetchUnreadCount = async () => {
     try {
       const response = await notificationService.getUnreadCount();
@@ -56,6 +38,26 @@ const PostItem = ({ post }) => {
     } catch (error) {
       console.error('Error fetching notification count:', error);
     }
+  };
+
+  // Add this new function to force a notification refresh
+  const forceRefreshNotifications = () => {
+    // Immediately refresh notifications
+    setRefreshNotifications(prev => prev + 1);
+    // Force fetch unread count
+    fetchUnreadCount();
+  };
+
+  const handleLikeToggle = () => {
+    setRefreshLikes(prev => prev + 1);
+    
+    // No delay - force immediate refresh
+    forceRefreshNotifications();
+  };
+
+  const handleCommentAdded = () => {
+    // No delay - force immediate refresh
+    forceRefreshNotifications();
   };
 
   const toggleComments = () => {
@@ -105,6 +107,19 @@ const PostItem = ({ post }) => {
         <div className="like-section">
           <LikeButton postId={postId} onLikeToggle={handleLikeToggle} />
           <LikeCounter postId={postId} refreshTrigger={refreshLikes} />
+          
+          {/* Add a test notification button */}
+          <button 
+            className="test-notification-btn"
+            onClick={() => {
+              notificationService.createSelfNotification()
+                .then(() => {
+                  forceRefreshNotifications();
+                });
+            }}
+          >
+            Test Notification
+          </button>
         </div>
         
         <button className="comment-toggle" onClick={toggleComments}>
