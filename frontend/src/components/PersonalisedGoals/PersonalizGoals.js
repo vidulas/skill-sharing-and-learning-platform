@@ -373,7 +373,7 @@ const PersonalizedLearningGoals = () => {
     const fetchGoals = async () => {
         try {
             const response = await axios.get(
-                `http://localhost:8080/api/goals/user/${currentUser.id}`
+                `http://localhost:8085/api/goals/user/${currentUser.id}`
             );
             setGoals(response.data);
         } catch (error) {
@@ -415,7 +415,7 @@ const PersonalizedLearningGoals = () => {
         }
 
         try {
-            await axios.post("http://localhost:8080/api/goals", {
+            await axios.post("http://localhost:8085/api/goals", {
                 ...newGoal,
                 userId: 8,
             });
@@ -453,7 +453,7 @@ const PersonalizedLearningGoals = () => {
         setEditDateError('');
         try {
             await axios.put(
-                `http://localhost:8080/api/goals/${editingGoal.id}`,
+                `http://localhost:8085/api/goals/${editingGoal.id}`,
                 editingGoal
             );
             setOpenDialog(false);
@@ -470,7 +470,7 @@ const PersonalizedLearningGoals = () => {
 
     const handleDeleteConfirm = async () => {
         try {
-            await axios.delete(`http://localhost:8080/api/goals/${goalToDelete.id}`);
+            await axios.delete(`http://localhost:8085/api/goals/${goalToDelete.id}`);
             setOpenDeleteDialog(false);
             fetchGoals();
         } catch (error) {
