@@ -1,29 +1,32 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import { signOut } from 'firebase/auth';
-import { auth } from '../../firebase';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 
-import { BookOpenIcon, HomeIcon, LogInIcon, LogOutIcon, UserPlusIcon, BookIcon, LayoutDashboardIcon } from 'lucide-react';
-const Layout = ({
-  children
-}: {
-  children: React.ReactNode;
-}) => {
-  const {
-    user,
-    logout
-  } = useAuth();
+import {
+  BookOpenIcon,
+  HomeIcon,
+  LogInIcon,
+  LogOutIcon,
+  UserPlusIcon,
+  BookIcon,
+  LayoutDashboardIcon,
+  GoalIcon,
+} from "lucide-react";
+const Layout = ({ children }: { children: React.ReactNode }) => {
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
       await signOut(auth); // Sign out the user using Firebase
-      navigate('/login'); // Redirect to the login page
+      navigate("/login"); // Redirect to the login page
     } catch (error) {
-      console.error('Error logging out:', error);
+      console.error("Error logging out:", error);
     }
   };
-  return <div className="flex flex-col min-h-screen bg-gray-50">
+  return (
+    <div className="flex flex-col min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -32,40 +35,80 @@ const Layout = ({
             <span className="text-xl font-bold text-gray-800">SkillShare</span>
           </Link>
           <nav className="hidden md:flex items-center space-x-6">
-            <Link to="/" className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600">
+            <Link
+              to="/"
+              className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600"
+            >
               <HomeIcon className="h-5 w-5" />
               <span>Home</span>
             </Link>
-            {user ? <>
-                <Link to="/dashboard" className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600">
+            {user ? (
+              <>
+                <Link
+                  to="/dashboard"
+                  className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600"
+                >
                   <LayoutDashboardIcon className="h-5 w-5" />
                   <span>Dashboard</span>
                 </Link>
-                <Link to="/create-post" className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600">
+                <a
+                  href="http://localhost:3000"
+                  className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600"
+                >
+                  <GoalIcon className="h-5 w-5" />
+                  <span>Create Goal</span>
+                </a>
+                <Link
+                  to="/create-post"
+                  className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600"
+                >
                   <BookIcon className="h-5 w-5" />
                   <span>Create Post</span>
                 </Link>
-                <button onClick={handleLogout} className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600">
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600"
+                >
                   <LogOutIcon className="h-5 w-5" />
                   <span>Logout</span>
                 </button>
-              </> : <>
-                <Link to="/login" className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600">
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600"
+                >
                   <LogInIcon className="h-5 w-5" />
                   <span>Login</span>
                 </Link>
-                <Link to="/signup" className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600">
+                <Link
+                  to="/signup"
+                  className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600"
+                >
                   <UserPlusIcon className="h-5 w-5" />
                   <span>Sign Up</span>
                 </Link>
-              </>}
+              </>
+            )}
           </nav>
           {/* Mobile menu button */}
           <div className="md:hidden">
             {/* Mobile menu implementation would go here */}
             <button className="p-2 text-gray-600">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               </svg>
             </button>
           </div>
@@ -142,6 +185,7 @@ const Layout = ({
           </div>
         </div>
       </footer>
-    </div>;
+    </div>
+  );
 };
 export default Layout;
