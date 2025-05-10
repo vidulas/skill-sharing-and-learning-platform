@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31d9c2d2-94b9-420e-8b37-54a84d0ba246" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/skillshare/src/main/java/com/edu/skillshare/controller/UserAnswerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/skillshare/src/main/java/com/edu/skillshare/document/UserAnswer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/skillshare/src/main/java/com/edu/skillshare/repository/UserAnswerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/skillshare/src/main/java/com/edu/skillshare/service/UserAnswerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/skillshare/src/main/java/com/edu/skillshare/service/UserAnswerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin-clientside/src/contexts/QuizContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/admin-clientside/src/contexts/QuizContext.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin-clientside/src/pages/Dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/admin-clientside/src/pages/Dashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin-clientside/src/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/admin-clientside/src/pages/Home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin-clientside/src/pages/Quiz.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/admin-clientside/src/pages/Quiz.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="31d9c2d2-94b9-420e-8b37-54a84d0ba246" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
