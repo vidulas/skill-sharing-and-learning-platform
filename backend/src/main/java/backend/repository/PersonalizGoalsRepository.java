@@ -2,7 +2,6 @@ package backend.repository;
 
 import backend.model.PersonalizGoalsModel;
 import org.springframework.data.mongodb.repository.MongoRepository;
-
 import java.util.List;
 
 public interface PersonalizGoalsRepository
