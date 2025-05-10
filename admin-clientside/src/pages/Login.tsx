@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { LogInIcon } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import { GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth';
+import { initializeApp } from 'firebase/app';
+import { firebaseConfig } from '../../firebase';
 import Input from '../components/Input';
 import Button from '../components/Button';
 const Login = () => {
@@ -13,6 +16,23 @@ const Login = () => {
     loading
   } = useAuth();
   const navigate = useNavigate();
+
+
+  const handleGoogleLogin = async () => {
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const token = await result.user.getIdToken();
+      console.log('Google Token:', token);
+      // Store token in localStorage or context for later use
+
+      // Redirect to home page after successful login
+      navigate('/');
+    } catch (error) {
+      console.error('Google Login Error:', error);
+    }
+  };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) {
@@ -57,6 +77,7 @@ const Login = () => {
                   Forgot your password?
                 </a>
               </div>
+              <button className="login-button" onClick={handleGoogleLogin}>Login with Google</button>
             </div>
             <Button type="submit" variant="primary" fullWidth disabled={loading}>
               {loading ? 'Logging in...' : 'Log in'}
