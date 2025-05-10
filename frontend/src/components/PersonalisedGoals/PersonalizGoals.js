@@ -175,7 +175,7 @@ const GoalCard = styled(Paper)(({theme, completed}) => ({
     }),
 }));
 
-const ProgressBar = styled(LinearProgress)(({theme, value}) => ({
+const ProgressBar = styled(LinearProgress)(({theme, value}) => ({ 
     height: 10,
     borderRadius: 8,
     margin: theme.spacing(2, 0),
