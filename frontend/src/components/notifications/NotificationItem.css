@@ -1,0 +1,85 @@
+.notification-item {
+  display: flex;
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+.notification-item:hover {
+  background-color: #f9fafb;
+}
+
+.notification-item.unread {
+  background-color: #f0f9ff;
+}
+
+.notification-item.unread.self-action {
+  background-color: #f5f3ff; /* Light purple for self-actions */
+}
+
+.notification-icon-container {
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background-color: #f3f4f6;
+}
+
+.notification-icon {
+  font-size: 1.25rem;
+}
+
+.notification-icon.like {
+  color: #ef4444;
+}
+
+.notification-icon.comment {
+  color: #3b82f6;
+}
+
+.notification-icon.follow {
+  color: #10b981;
+}
+
+.notification-icon.mention {
+  color: #8b5cf6;
+}
+
+.notification-icon.reply {
+  color: #8b5cf6; /* Purple color for replies */
+}
+
+.notification-icon.self-action {
+  color: #7e22ce; /* Purple for self-actions */
+}
+
+.notification-content {
+  flex: 1;
+}
+
+.notification-message {
+  font-weight: 500;
+  color: #1f2937;
+  margin-bottom: 0.25rem;
+}
+
+.notification-time {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.unread-indicator {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: #3b82f6;
+  position: absolute;
+  top: 1.25rem;
+  right: 1rem;
+}
