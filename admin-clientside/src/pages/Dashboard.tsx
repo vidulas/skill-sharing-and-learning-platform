@@ -16,7 +16,7 @@ const Dashboard = () => {
     loading: postsLoading
   } = usePost();
   const {
-    quizzes,
+    questions,
     loading: quizzesLoading
   } = useQuiz();
   const [activeTab, setActiveTab] = useState('posts');
@@ -34,7 +34,7 @@ const Dashboard = () => {
   // Filter posts based on search term
   const filteredPosts = posts.filter(post => post.title.toLowerCase().includes(searchTerm.toLowerCase()) || post.category.toLowerCase().includes(searchTerm.toLowerCase()) || post.author.name.toLowerCase().includes(searchTerm.toLowerCase()));
   // Filter quizzes based on search term
-  const filteredQuizzes = quizzes.filter(quiz => quiz.title.toLowerCase().includes(searchTerm.toLowerCase()) || quiz.category.toLowerCase().includes(searchTerm.toLowerCase()) || quiz.difficulty.toLowerCase().includes(searchTerm.toLowerCase()));
+  const filteredQuizzes = questions.filter(quiz => quiz.questionText.toLowerCase().includes(searchTerm.toLowerCase()));
   return <div className="max-w-6xl mx-auto">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
         <div>
@@ -91,7 +91,7 @@ const Dashboard = () => {
               <h3 className="text-xl font-medium mb-2">No quizzes found</h3>
               <p className="text-gray-500">Try adjusting your search</p>
             </div> : <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredQuizzes.map(quiz => <QuizCard key={quiz.id} id={quiz.id} title={quiz.title} description={quiz.description} questionsCount={quiz.questions.length} timeInMinutes={quiz.timeInMinutes} difficulty={quiz.difficulty} participants={quiz.participants} category={quiz.category} />)}
+              {filteredQuizzes.map(quiz => <QuizCard key={quiz.id} id={quiz.id} title={quiz.title} description={quiz.description} questionsCount={quiz.length} timeInMinutes={quiz.timeInMinutes} difficulty={quiz.difficulty} participants={quiz.participants} category={quiz.category} />)}
             </div>}
         </div>}
     </div>;

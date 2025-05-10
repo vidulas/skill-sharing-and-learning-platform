@@ -6,19 +6,56 @@ import { useQuiz } from '../contexts/QuizContext';
 import PostCard from '../components/PostCard';
 import QuizCard from '../components/QuizCard';
 import Button from '../components/Button';
+
+const mockQuizzes = [
+  {
+    id: '1',
+    title: 'React Basics',
+    description: 'Learn the fundamentals of React.',
+    questions: [{}, {}, {}], // Mock 3 questions
+    timeInMinutes: 10,
+    difficulty: 'Beginner',
+    participants: 120,
+    category: 'Web Development',
+  },
+  {
+    id: '2',
+    title: 'Advanced CSS',
+    description: 'Master advanced CSS techniques.',
+    questions: [{}, {}, {}, {}, {}], // Mock 5 questions
+    timeInMinutes: 15,
+    difficulty: 'Intermediate',
+    participants: 80,
+    category: 'Design',
+  },
+  {
+    id: '3',
+    title: 'TypeScript Essentials',
+    description: 'Get started with TypeScript.',
+    questions: [{}, {}, {}, {}], // Mock 4 questions
+    timeInMinutes: 12,
+    difficulty: 'Advanced',
+    participants: 100,
+    category: 'Programming',
+  },
+];
+
+
 const Home = () => {
+  const mockPosts = [];
   const {
     posts,
     loading: postsLoading
   } = usePost();
   const {
-    quizzes,
+    questions,
     loading: quizzesLoading
   } = useQuiz();
   // Get featured posts (most liked)
+
   const featuredPosts = [...posts].sort((a, b) => b.likes - a.likes).slice(0, 3);
   // Get featured quizzes (most participants)
-  const featuredQuizzes = [...quizzes].sort((a, b) => b.participants - a.participants).slice(0, 3);
+  const featuredQuizzes = mockQuizzes
   return <div className="w-full">
       {/* Hero Section */}
       <section className="bg-indigo-700 text-white py-16 px-4">
@@ -120,7 +157,19 @@ const Home = () => {
           {quizzesLoading ? <div className="flex justify-center py-12">
               <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
             </div> : <div className="grid md:grid-cols-3 gap-6">
-              {featuredQuizzes.map(quiz => <QuizCard key={quiz.id} id={quiz.id} title={quiz.title} description={quiz.description} questionsCount={quiz.questions.length} timeInMinutes={quiz.timeInMinutes} difficulty={quiz.difficulty} participants={quiz.participants} category={quiz.category} />)}
+            {featuredQuizzes.map((quiz) => (
+              <QuizCard
+                key={quiz.id}
+                id={quiz.id}
+                title={quiz.title}
+                description={quiz.description}
+                questionsCount={quiz.questions.length}
+                timeInMinutes={quiz.timeInMinutes}
+                difficulty={quiz.difficulty}
+                participants={quiz.participants}
+                category={quiz.category}
+              />
+            ))}
             </div>}
         </div>
       </section>

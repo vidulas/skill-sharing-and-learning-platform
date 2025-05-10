@@ -22,9 +22,10 @@ export function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/quiz" element={<Quiz/>}/>
                 <Route path="/create-post" element={<CreatePost />} />
                 <Route path="/post/:id" element={<PostDetail />} />
-                <Route path="/quiz/:id" element={<Quiz />} />
+                {/* <Route path="/quiz/:id" element={<Quiz />} /> */}
               </Routes>
             </Layout>
           </QuizProvider>
